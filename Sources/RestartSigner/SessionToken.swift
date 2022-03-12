@@ -34,3 +34,9 @@ public enum Signer {
     app.jwt.signers.use(.hs256(key: key), kid: .sessionToken)
   }
 }
+
+public extension Request {
+  func sessionToken() throws -> SessionToken {
+    try auth.require(SessionToken.self)
+  }
+}
